@@ -1,23 +1,40 @@
-import { async } from "@firebase/util";
-import firebase from "firebase/app";
+import { getApp } from "firebase/app";
+import {
+  signInWithPopup,
+  getAuth,
+  GoogleAuthProvider,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
 
-export const AuthService = {
-  loginWithGoogle: async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
+class AuthService {
+  constructor(firebaseApp) {
+    this.auth = getAuth(firebaseApp);
+  }
 
-    try {
-      const userCred = await firebase.auth().signInWithPopup(provider);
-      return {
-        user: userCred.user,
-      };
-    } catch (e) {
-      return {
-        error: e.message,
-      };
-    }
-  },
+  waitForUser(callback) {
+    return onAuthStateChanged(this.auth, (userCred) => {
+      callback(userCred);
+    });
+  }
 
-  logout: async () => {
-    await firebase.auth().signOut();
-  },
-};
+  loginWithGoogle() {
+    return signInWithPopup(this.auth, new GoogleAuthProvider())
+      .then((userCred) => {
+        return {
+          user: userCred.user,
+        };
+      })
+      .catch((error) => {
+        return {
+          error: error.message,
+        };
+      });
+  }
+
+  async logout() {
+    await signOut(this.auth);
+  }
+}
+
+export default new AuthService(getApp());

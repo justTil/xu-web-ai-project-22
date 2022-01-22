@@ -8,10 +8,10 @@ export default function AuthStateChanged({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    /* firebase.auth().onAuthChanged((user) => {
-      setUser(user);
+    AuthService.waitForUser((userCred) => {
+      setUser(userCred);
       setLoading(false);
-    }); */
+    });
     //eslint-disable-next-line
   }, []);
 
