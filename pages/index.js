@@ -1,10 +1,11 @@
-import Link from "next/link";
+import { withPublic } from "../src/hook/route";
 
-export default function Home() {
+function Home() {
   return (
     <div>
-      <Link href="/admin">admin</Link>
-      <Link href="/login">login</Link>
+      <h1>Index</h1>
     </div>
   );
 }
+
+export default withPublic(Home);
