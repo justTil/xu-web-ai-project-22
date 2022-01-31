@@ -8,12 +8,14 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import ClassSettingMenu from "./ClassSettingsMenu";
 
-const Class = ({ aiClass, trainingRef, isActive }) => {
+const Class = ({ aiClass, trainingRef, isActive, setClassArray }) => {
   return (
     <Card sx={{ minWidth: 275, mb: 1.5 }}>
       <CardHeader
         title={aiClass.name}
-        action={<ClassSettingMenu />}
+        action={
+          <ClassSettingMenu setClassArray={setClassArray} aiClass={aiClass} />
+        }
       ></CardHeader>
       <Divider />
       <CardContent>

@@ -143,6 +143,7 @@ const Playground = (props) => {
                 return (
                   <Item id={aiClass.name} key={aiClass.id}>
                     <Class
+                      setClassArray={setClassArray}
                       isActive={activated}
                       aiClass={aiClass}
                       trainingRef={training}
@@ -163,7 +164,7 @@ const Playground = (props) => {
                 ]);
               }}
             >
-              Klasse hinzufügen
+              Add new Class
             </Button>
             <div
               style={{
@@ -243,7 +244,7 @@ const Playground = (props) => {
                         });
                     }}
                   >
-                    Kamera aktivieren
+                    Activate Webcam
                   </Button>
                 )}
               </CardContent>
@@ -264,7 +265,7 @@ const Playground = (props) => {
             <Item id="previewCard">
               <Card>
                 <CardHeader
-                  title="Vorschau"
+                  title="Preview"
                   action={
                     <Button
                       startIcon={<Download />}

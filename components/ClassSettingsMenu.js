@@ -4,7 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import * as React from "react";
 
-export default function ClassSettingMenu() {
+export default function ClassSettingMenu({ setClassArray, aiClass }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -12,6 +12,12 @@ export default function ClassSettingMenu() {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
+    setClassArray((classArray) => {
+      console.log(classArray);
+      return classArray.filter((aiClassF) => {
+        return aiClassF.id != aiClass.id;
+      });
+    });
     setAnchorEl(null);
   };
 
@@ -34,10 +40,10 @@ export default function ClassSettingMenu() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose} disableRipple>
-          Klasse löschen
+          Delete Class
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          Klasse deaktivieren
+        <MenuItem disabled disableRipple>
+          Deactivate Class
         </MenuItem>
       </Menu>
     </div>
