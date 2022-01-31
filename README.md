@@ -58,6 +58,7 @@ Start
 ```bash
   npm run dev
 ```
+Caution: When starting the project for the first time, an error concerning Firebase may appear. If that happens, reload the page and the error should be gone.
 ## Tech Stack
 
 **Client:** React, Next.js, MUI
