@@ -35,13 +35,13 @@ export default function Home() {
           Image Recognition
         </Typography>
         <Typography variant="body1" textAlign="center">
-          When you first meet Annie, she doesn't know many objects and pictures
-          yet. However, she learns very quickly, and you can show her different
-          things from your room and teach her what it is. Annie can compare
-          several diverse pictures and then tell you what she thinks you are
-          showing her. If you want, you can save Annie's progress, and in the
-          future, import the progress you two made so that you can continue
-          learning together.
+          When you first meet Annie, she doesn&apos;t know many objects and
+          pictures yet. However, she learns very quickly, and you can show her
+          different things from your room and teach her what it is. Annie can
+          compare several diverse pictures and then tell you what she thinks you
+          are showing her. If you want, you can save Annie&apos;s progress, and
+          in the future, import the progress you two made so that you can
+          continue learning together.
         </Typography>
       </Container>
       <Footer />
