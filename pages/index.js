@@ -9,7 +9,7 @@ export default function Home() {
       <Header />
       <Container style={{ padding: "50px 150px" }}>
         <Typography variant="h2" textAlign="center">
-          Annie's Playground
+          Annie&apos;s Playground
         </Typography>
         <Typography variant="body1" textAlign="center">
           Suppose you were to survey today and ask developers and tech
@@ -29,19 +29,19 @@ export default function Home() {
           So how can newcomers and interested people get an insight into
           artificial intelligence without building their supercomputer? <br />
           <br />
-          With "Annie's Playground" we offer a playground where all interest
-          groups can work with artificial intelligence and get a first
-          impression of the technology with just a few clicks. You can create a
-          small AI project like image recognition and see if the AI can
+          With &quot;Annie&apos;s Playground&quot; we offer a playground where
+          all interest groups can work with artificial intelligence and get a
+          first impression of the technology with just a few clicks. You can
+          create a small AI project like image recognition and see if the AI can
           differentiate between you and your friends, and the beauty of it is
-          that it works directly in the browser. You don't need any other
+          that it works directly in the browser. You don&apos;t need any other
           software or hardware, making your first AI project easy to set up.
         </Typography>
       </Container>
       <Middle />
       <Container style={{ padding: "50px 150px" }}>
         <Typography variant="h2" textAlign="center">
-          Annie Learn's Pictures
+          Annie Learn&apos;s Pictures
         </Typography>
         <Typography variant="body1" textAlign="center">
           For now, Annie did not learn anything, but you can change that by
