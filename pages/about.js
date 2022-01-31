@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+import { Container, Link, Typography } from "@mui/material";
 import Footer from "../src/components/footer";
 
 export default function About() {
@@ -28,8 +28,16 @@ export default function About() {
           projects to learn more about the topic.
           <br />
           <br />
-          If you are interested to learn about the code, you can check out our
-          public repository.
+          If you are interested to learn about the code, you can check out our{" "}
+          <Link
+            href="https://github.com/justTil/xu-web-ai-project-22"
+            color="primary.main"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            public repository
+          </Link>
+          .
         </Typography>
       </Container>
       <Footer />
