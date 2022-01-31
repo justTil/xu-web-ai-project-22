@@ -27,7 +27,7 @@ const IMAGE_SIZE = 227;
 // K val for KNN, needs to be scaled accordingly to the num of examples. Set based on experience atm.
 const TOPK = 10;
 
-const playground = (props) => {
+const Playground = (props) => {
   const [classArray, setClassArray] = useState(defaultClasses);
 
   const vid = useRef();
@@ -232,4 +232,4 @@ const playground = (props) => {
   );
 };
 
-export default playground;
+export default Playground;
