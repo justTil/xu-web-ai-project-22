@@ -2,7 +2,6 @@ import { Container, Typography } from "@mui/material";
 import Footer from "../src/components/footer";
 import Header from "../src/components/header";
 import Middle from "../src/components/middle";
-import MediaCard from "../src/components/MediaCard";
 
 export default function Home() {
   return (
