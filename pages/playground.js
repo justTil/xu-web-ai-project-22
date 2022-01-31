@@ -120,50 +120,18 @@ const Playground = (props) => {
           justifyContent="center"
         >
           <Grid item xs={5}>
-            <Card sx={{ mb: 1 }}>
-              <CardHeader title="Webcam" />
-              <CardContent>
-                {activated && <video ref={vid} autoPlay playsInline muted />}
-                {!activated && (
-                  <Button
-                    variant="dashed"
-                    color="secondary"
-                    sx={{ width: "100%", height: IMAGE_SIZE / 2 }}
-                    onClick={() => {
-                      setActivated(true);
-                      createAi();
-
-                      navigator.mediaDevices
-                        .getUserMedia({ video: true, audio: false })
-                        .then((stream) => {
-                          vid.current.srcObject = stream;
-                          vid.current.width = IMAGE_SIZE;
-                          vid.current.height = IMAGE_SIZE;
-
-                          vid.current.addEventListener("play", () => {
-                            videoPlaying.current = true;
-                          });
-                          vid.current.addEventListener(
-                            "paused",
-                            () => (videoPlaying.current = false)
-                          );
-                        });
-                    }}
-                  >
-                    Kamera aktivieren
-                  </Button>
-                )}
-              </CardContent>
-            </Card>
             <Box
               style={{
-                height: "45vh",
+                height: "80vh",
                 position: "sticky",
                 top: "0",
                 overflowY: "auto",
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                justifyContent: "center",
               }}
               onScroll={() => {
-                console.log("Test");
                 updateXarrow();
               }}
             >
@@ -207,11 +175,11 @@ const Playground = (props) => {
                 style={{
                   position: "relative",
                   overflow: "hidden",
-                  top: "47vh",
+                  top: "7.128vh",
                   right: "0",
                   bottom: "10vh",
                   left: "0",
-                  height: "43vh",
+                  height: "82.872vh",
                   width: "100vh",
                 }}
               >
@@ -233,6 +201,41 @@ const Playground = (props) => {
             </div>
           </Grid>
           <Grid item xs={3}>
+            <Card sx={{ mb: 1 }}>
+              <CardHeader title="Webcam" />
+              <CardContent>
+                {activated && <video ref={vid} autoPlay playsInline muted />}
+                {!activated && (
+                  <Button
+                    variant="dashed"
+                    color="secondary"
+                    sx={{ width: "100%", height: IMAGE_SIZE / 2 }}
+                    onClick={() => {
+                      setActivated(true);
+                      createAi();
+
+                      navigator.mediaDevices
+                        .getUserMedia({ video: true, audio: false })
+                        .then((stream) => {
+                          vid.current.srcObject = stream;
+                          vid.current.width = IMAGE_SIZE;
+                          vid.current.height = IMAGE_SIZE;
+
+                          vid.current.addEventListener("play", () => {
+                            videoPlaying.current = true;
+                          });
+                          vid.current.addEventListener(
+                            "paused",
+                            () => (videoPlaying.current = false)
+                          );
+                        });
+                    }}
+                  >
+                    Kamera aktivieren
+                  </Button>
+                )}
+              </CardContent>
+            </Card>
             <Item>
               <Card id="trainCard">
                 <CardHeader title="Training" />
