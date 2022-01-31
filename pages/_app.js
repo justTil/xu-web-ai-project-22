@@ -8,15 +8,15 @@ import { theme } from "../src/theme";
 
 function MyApp({ Component, pageProps }) {
   return (
-      <AuthProvider>
-        <ThemeProvider theme={theme}>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
         <AppLayout>
           <AuthStateChanged>
             <Component {...pageProps} />
           </AuthStateChanged>
         </AppLayout>
-        </ThemeProvider>
-      </AuthProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 
