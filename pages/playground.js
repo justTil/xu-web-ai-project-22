@@ -1,4 +1,5 @@
-import { Box, CardHeader, Divider } from "@mui/material";
+import { Download } from "@mui/icons-material";
+import { Box, CardHeader, Container, Divider } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -9,7 +10,7 @@ import * as mobilenetModule from "@tensorflow-models/mobilenet";
 import * as tf from "@tensorflow/tfjs";
 import "@tensorflow/tfjs-backend-webgl";
 import React, { useEffect, useRef, useState } from "react";
-import Xarrow from "react-xarrows";
+import Xarrow, { useXarrow, Xwrapper } from "react-xarrows";
 import Class from "../components/Class";
 import LinearProgressWithLabel from "../components/LinearProgressWithLabel";
 
@@ -29,6 +30,8 @@ const TOPK = 10;
 
 const Playground = (props) => {
   const [classArray, setClassArray] = useState(defaultClasses);
+  const [activated, setActivated] = useState(false);
+  const updateXarrow = useXarrow();
 
   const vid = useRef();
   const videoPlaying = useRef(false);
@@ -103,132 +106,191 @@ const Playground = (props) => {
       classCount.current = classArray.length;
   }, [classArray]);
 
-  useEffect(() => {
-    createAi();
-
-    navigator.mediaDevices
-      .getUserMedia({ video: true, audio: false })
-      .then((stream) => {
-        vid.current.srcObject = stream;
-        vid.current.width = IMAGE_SIZE;
-        vid.current.height = IMAGE_SIZE;
-
-        vid.current.addEventListener("play", () => {
-          videoPlaying.current = true;
-        });
-        vid.current.addEventListener(
-          "paused",
-          () => (videoPlaying.current = false)
-        );
-      });
-  }, []);
-
   async function save() {
     await mobilenet.current.model.save("downloads://xu-your-model");
   }
 
   return (
-    <div>
-      <Grid container spacing={10} alignItems="center" justifyContent="center">
-        <Grid item xs={5}>
-          <Card sx={{ mb: 1 }}>
-            <CardHeader title="Webcam" />
-            <CardContent>
-              <video ref={vid} autoPlay playsInline muted />
-            </CardContent>
-          </Card>
-          <Box style={{ maxHeight: "90vh", overflow: "auto" }}>
-            {classArray.map((aiClass) => {
-              return (
-                <Item id={aiClass.name} key={aiClass.name}>
-                  <Class aiClass={aiClass} trainingRef={training} />
-                  <Xarrow
-                    start={aiClass.name}
-                    strokeWidth={2}
-                    startAnchor="right"
-                    endAnchor="left"
-                    showHead={false}
-                    color="gray"
-                    end="trainCard"
-                  />
-                </Item>
-              );
-            })}
-
-            <Item>
-              <Button
-                variant="dashed"
-                color="secondary"
-                sx={{ width: "100%" }}
-                onClick={() => {
-                  classCounter += 1;
-                  setClassArray((classes) => [
-                    ...classes,
-                    { name: "Class " + (classCounter + 1), id: classCounter },
-                  ]);
-                }}
-              >
-                Klasse hinzufügen
-              </Button>
-            </Item>
-          </Box>
-        </Grid>
-        <Grid item xs={3}>
-          <Item>
-            <Card id="trainCard">
-              <CardHeader title="Training" />
-              <CardActions>
-                <Button sx={{ width: "100%" }} variant="contained">
-                  Modell trainieren
-                </Button>
-              </CardActions>
-            </Card>
-          </Item>
-        </Grid>
-        <Grid item xs={4}>
-          <Item id="previewCard">
-            <Card>
-              <CardHeader
-                title="Vorschau"
-                action={
+    <Container style={{ maxHeight: "84vh" }} maxWidth="xl" sx={{ my: 5 }}>
+      <Xwrapper>
+        <Grid
+          container
+          spacing={10}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Grid item xs={5}>
+            <Card sx={{ mb: 1 }}>
+              <CardHeader title="Webcam" />
+              <CardContent>
+                {activated && <video ref={vid} autoPlay playsInline muted />}
+                {!activated && (
                   <Button
-                    disabled={mobilenet == undefined}
+                    variant="dashed"
+                    color="secondary"
+                    sx={{ width: "100%", height: IMAGE_SIZE / 2 }}
                     onClick={() => {
-                      save();
+                      setActivated(true);
+                      createAi();
+
+                      navigator.mediaDevices
+                        .getUserMedia({ video: true, audio: false })
+                        .then((stream) => {
+                          vid.current.srcObject = stream;
+                          vid.current.width = IMAGE_SIZE;
+                          vid.current.height = IMAGE_SIZE;
+
+                          vid.current.addEventListener("play", () => {
+                            videoPlaying.current = true;
+                          });
+                          vid.current.addEventListener(
+                            "paused",
+                            () => (videoPlaying.current = false)
+                          );
+                        });
                     }}
                   >
-                    Speichern
+                    Kamera aktivieren
                   </Button>
-                }
-              />
-              <Divider />
-              <CardContent>
-                {results.map((res) => (
-                  <div key={res.id}>
-                    {
-                      classArray.filter((aiClass) => {
-                        console.log(aiClass.id);
-                        console.log(res.id);
-                        return aiClass.id == res.id;
-                      })[0].name
-                    }{" "}
-                    - {res.examples} Images
-                    <LinearProgressWithLabel value={res.confidence * 100} />
-                  </div>
-                ))}
+                )}
               </CardContent>
             </Card>
-          </Item>
-          <Xarrow
-            start="trainCard"
-            end="previewCard"
-            color="gray"
-            showHead={false}
-            strokeWidth={2}
-          />
+            <Box
+              style={{
+                height: "45vh",
+                position: "sticky",
+                top: "0",
+                overflowY: "auto",
+              }}
+              onScroll={() => {
+                console.log("Test");
+                updateXarrow();
+              }}
+            >
+              {classArray.map((aiClass) => {
+                return (
+                  <Item id={aiClass.name} key={aiClass.id}>
+                    <Class
+                      isActive={activated}
+                      aiClass={aiClass}
+                      trainingRef={training}
+                    />
+                  </Item>
+                );
+              })}
+            </Box>
+            <Button
+              variant="dashed"
+              color="secondary"
+              sx={{ width: "100%" }}
+              onClick={() => {
+                classCounter += 1;
+                setClassArray((classes) => [
+                  ...classes,
+                  { name: "Class " + (classCounter + 1), id: classCounter },
+                ]);
+              }}
+            >
+              Klasse hinzufügen
+            </Button>
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0,
+                zIndex: "-1",
+              }}
+            >
+              <div
+                style={{
+                  position: "relative",
+                  overflow: "hidden",
+                  top: "47vh",
+                  right: "0",
+                  bottom: "10vh",
+                  left: "0",
+                  height: "43vh",
+                  width: "100vh",
+                }}
+              >
+                {classArray.map((aiClass) => {
+                  return (
+                    <Xarrow
+                      key={aiClass.id}
+                      start={aiClass.name}
+                      strokeWidth={2}
+                      startAnchor="right"
+                      endAnchor="left"
+                      showHead={false}
+                      color="gray"
+                      end="trainCard"
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </Grid>
+          <Grid item xs={3}>
+            <Item>
+              <Card id="trainCard">
+                <CardHeader title="Training" />
+                <CardContent>Automatically trains on adding Images</CardContent>
+                <CardActions>
+                  <Button disabled sx={{ width: "100%" }} variant="contained">
+                    Train Model
+                  </Button>
+                </CardActions>
+              </Card>
+            </Item>
+          </Grid>
+          <Grid item xs={4}>
+            <Item id="previewCard">
+              <Card>
+                <CardHeader
+                  title="Vorschau"
+                  action={
+                    <Button
+                      startIcon={<Download />}
+                      disabled={!activated}
+                      onClick={() => {
+                        save();
+                      }}
+                    >
+                      Export model
+                    </Button>
+                  }
+                />
+                <Divider />
+                <CardContent>
+                  {results.map((res) => (
+                    <div key={res.id}>
+                      {
+                        classArray.filter((aiClass) => {
+                          console.log(aiClass.id);
+                          console.log(res.id);
+                          return aiClass.id == res.id;
+                        })[0].name
+                      }{" "}
+                      - {res.examples} Images
+                      <LinearProgressWithLabel value={res.confidence * 100} />
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </Item>
+            <Xarrow
+              start="trainCard"
+              end="previewCard"
+              color="gray"
+              showHead={false}
+              strokeWidth={2}
+            />
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
+      </Xwrapper>
+    </Container>
   );
 };
 

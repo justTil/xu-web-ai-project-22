@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import ClassSettingMenu from "./ClassSettingsMenu";
 
-const Class = ({ aiClass, trainingRef }) => {
+const Class = ({ aiClass, trainingRef, isActive }) => {
   return (
     <Card sx={{ minWidth: 275, mb: 1.5 }}>
       <CardHeader
@@ -18,18 +18,19 @@ const Class = ({ aiClass, trainingRef }) => {
       <Divider />
       <CardContent>
         <Typography color="text.secondary">
-          Bildbeispiele hinzufügen:
+          Add example images from Webcam:
         </Typography>
       </CardContent>
       <CardActions>
         <Button
           variant="outlined"
+          disabled={!isActive}
           onMouseDown={() => (trainingRef.current = aiClass.id)}
           onMouseUp={() => (trainingRef.current = -1)}
           style={{ flexDirection: "column", fontSize: "0.6rem" }}
         >
           <Add style={{ marginBottom: "0.5rem" }} />
-          Bild machen
+          Take Picture (HOLD)
         </Button>
       </CardActions>
     </Card>
