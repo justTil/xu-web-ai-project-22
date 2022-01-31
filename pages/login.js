@@ -11,25 +11,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import { withPublic } from "../src/hook/route";
+import Copyright from "../src/components/Copyright";
 import { Card } from "@mui/material";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://www.annieai.ml/">
-        Annie AI
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 function SignIn({ auth }) {
   const { user, loginWithGoogle, error } = auth;
