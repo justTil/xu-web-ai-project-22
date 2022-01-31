@@ -1,10 +1,10 @@
-import * as React from "react";
+import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import * as React from "react";
 
 export default function MediaCard2() {
   return (
@@ -17,11 +17,11 @@ export default function MediaCard2() {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Annie's Playground
+          Annie&apos;s Playground
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Visit Annie's playground and start teaching her about cool stuff in
-          your room. Maybe ask a friend to join and let Annie meet them.
+          Visit Annie&apos;s playground and start teaching her about cool stuff
+          in your room. Maybe ask a friend to join and let Annie meet them.
         </Typography>
       </CardContent>
       <CardActions>

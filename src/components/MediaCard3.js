@@ -1,10 +1,10 @@
-import * as React from "react";
+import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import * as React from "react";
 
 export default function MediaCard3() {
   return (
@@ -20,8 +20,8 @@ export default function MediaCard3() {
           AlphaGo
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Learn about the amazing AI called "AlphaGo" by Google. Did it manage
-          to beat the world's best GO player? Go check it out!
+          Learn about the amazing AI called &quot;AlphaGo&quot; by Google. Did
+          it manage to beat the world&apos;s best GO player? Go check it out!
         </Typography>
       </CardContent>
       <CardActions>
