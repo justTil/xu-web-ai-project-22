@@ -18,7 +18,7 @@ class AuthService {
     });
   }
 
-  loginWithGoogle() {
+  async loginWithGoogle() {
     return signInWithPopup(this.auth, new GoogleAuthProvider())
       .then((userCred) => {
         return {

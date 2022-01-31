@@ -1,5 +1,5 @@
-import { createTheme } from '@mui/material/styles';
-import { teal, pink } from '@mui/material/colors';
+import { createTheme } from "@mui/material/styles";
+import { teal, pink } from "@mui/material/colors";
 
 export const theme = createTheme({
   palette: {

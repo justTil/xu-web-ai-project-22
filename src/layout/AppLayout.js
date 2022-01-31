@@ -1,68 +1,163 @@
-import { useRouter } from "next/router";
-import useAuth from "../hook/auth";
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import { Avatar, Box, Container, IconButton, Link } from "@mui/material";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import { Link } from "@mui/material";
+import Image from "next/image";
+
+const pages = [
+  {
+    title: "Home",
+    href: "/"
+  },
+  {
+    title: "Playground",
+    href: "/playground"
+  },
+  {
+    title: "About",
+    href: "/about"
+  }, 
+];
+const settings = [
+  {
+    title: "Logout",
+    href: "/logout"
+  }
+];
 
 export function AppLayout({ children }) {
-  const auth = useAuth();
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const router = useRouter();
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
-  if (router.pathname != "/login") {
-    return (
-      <main>
-        <AppBar position="static" color="primary">
-          <Toolbar>
-            <Box style={{ 
-              flexGrow: 1,
-              display: 'flex',
-             }}>
-              <Typography variant="h6" component="div">
-                <Link href="/" color="inherit" marginRight={5} style={{
-                  textDecoration: 'none'
-                }} >
-                  Home
-                </Link>
-              </Typography>
-              <Typography variant="h6" component="div" marginRight={5}>
-                <Link href="/about" color="inherit" style={{
-                  textDecoration: 'none'
-                }} >
-                  About
-                </Link>
-              </Typography>
-              <Typography variant="h6" component="div">
-                <Link href="/playground" color="inherit" style={{
-                  textDecoration: 'none'
-                }} >
-                  Playground
-                </Link>
-              </Typography>
-            </Box>
-            {!auth.user &&
-              <Typography variant="h6" component="div">
-                <Link href="/login" color="inherit" style={{
-                  textDecoration: 'none'
-                }} >
-                  Login
-                </Link>
-              </Typography>
-            }
-            {auth.user !== null &&
-              <IconButton onClick={auth.logout} >
-                <Avatar alt={auth.user.displayName} src={auth.user.photoURL} />
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  return (
+    <main>
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link href={page.href} color="inherit" style={{
+                    textDecoration: 'none'
+                        }} >
+                          {page.title}
+                    </Link>
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Image src="/assets/logo.svg" alt="Logo" height={50} width={50} href="/" />
+
+            {pages.map((page) => (
+              <Button
+                key={page.title}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+                href={page.href}
+              >
+                {page.title}
+              </Button>
+            ))}
+          </Box>
+
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/assets/Untitled design (2).png" />
               </IconButton>
-            }
-          </Toolbar>
-        </AppBar>
-        <Container sx={{ p: 3 }}>
-          {children}
-        </Container>
-      </main>
-    );
-  } else {
-    return children;
-  }
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                    <Link href={setting.href}color="inherit" style={{
+                      textDecoration: 'none'
+                    }} >
+                          {setting.title}
+                    </Link>
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+    {children}
+    </main>
+  );
 }
