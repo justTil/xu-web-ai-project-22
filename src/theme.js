@@ -1,17 +1,10 @@
-import { blue, gray, pink, teal } from "@mui/material/colors";
+import { blue, pink, teal } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
   components: {
     MuiButton: {
       variants: [
-        {
-          props: { variant: "dashed" },
-          style: {
-            textTransform: "none",
-            border: `1px dashed ${gray}`,
-          },
-        },
         {
           props: { variant: "dashed", color: "secondary" },
           style: {
