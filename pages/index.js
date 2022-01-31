@@ -1,11 +1,10 @@
-import { withPublic } from "../src/hook/route";
+import Header from "../src/components/header";
 
-function Home() {
+
+export default function Home() {
   return (
     <div>
-      <h1>Index</h1>
+      <Header />
     </div>
   );
 }
-
-export default withPublic(Home);

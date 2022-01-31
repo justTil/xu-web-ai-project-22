@@ -11,10 +11,29 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { Link } from "@mui/material";
 import Image from "next/image";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = [
+  {
+    title: "Home",
+    href: "/"
+  },
+  {
+    title: "Playground",
+    href: "/playground"
+  },
+  {
+    title: "About",
+    href: "/about"
+  }, 
+];
+const settings = [
+  {
+    title: "Logout",
+    href: "/logout"
+  }
+];
 
 export function AppLayout({ children }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -36,19 +55,13 @@ export function AppLayout({ children }) {
   };
 
   return (
+    <main>
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-          >
-            LOGO
-          </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -78,28 +91,30 @@ export function AppLayout({ children }) {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link href={page.href} color="inherit" style={{
+                    textDecoration: 'none'
+                        }} >
+                          {page.title}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            LOGO
-          </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Image src="/assets/logo.svg" alt="Logo" height={50} width={50} href="/" />
+
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.title}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
+                href={page.href}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>
@@ -128,7 +143,13 @@ export function AppLayout({ children }) {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center">
+                    <Link href={setting.href}color="inherit" style={{
+                      textDecoration: 'none'
+                    }} >
+                          {setting.title}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -136,5 +157,7 @@ export function AppLayout({ children }) {
         </Toolbar>
       </Container>
     </AppBar>
+    {children}
+    </main>
   );
 }
