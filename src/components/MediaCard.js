@@ -25,7 +25,6 @@ export default function MediaCard() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
         <Button
           size="small"
           href="https://group.mercedes-benz.com/innovation/produktinnovation/autonomes-fahren/mercedes-benz-und-nvidia-planen-zusammenarbeit.html?r=dai "

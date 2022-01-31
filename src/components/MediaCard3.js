@@ -25,7 +25,6 @@ export default function MediaCard3() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
         <Button
           size="small"
           href="https://deepmind.com/research/case-studies/alphago-the-story-so-far"
