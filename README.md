@@ -1,34 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# AnnieAI.ML
 
-First, run the development server:
+[ANNIE.ML](https://www.annieai.ml/) is a website that offers you a fun way to experience artificial intelligence,
+by enabling you to run your own AI projects directly in the web browser.
 
+## What is AnnieAI.ML?
+AnnieAI is a web-based AI project using TensorFlow by Google, which allows you to create 
+your own AI playgrounds. The idea behind the project is to ease entry into the  AI world for everyone by letting you create your own small AI 
+applications.
+## Who Is Annie?
+Annie is your personal artificial friend that is excited to learn new things. 
+With our playground, you can teach Annie about objects in your room or bring your friends and let them meet Annie.
+
+
+## What Is the Playground?
+Using the playground, you can add pictures with your webcam and train the AI in your 
+web browser. By creating new classes, you can, e.g., add new objects you have lying
+around in your room. For example, an Apple and an ML learning Book.
+
+### How Does the Playground Work?
+For visualization, let's take the Apple and the ML Learning Book.
+The default amount of classes we have is two 
+however it is up to you how many classes
+you want to create. For our example, we will work with the two classes already 
+created. 
+
+Let's start with the Apple. Our website uses the webcam to take pictures of the
+objects you want to add, so please allow the website access. Now that your webcam
+picture appears, you can take the apple and hold it into the frame. Start taking
+pictures by pressing and holding the "Take Picture" button. You will see the number
+of images you've taken on the right. When you shake your hand, or some pictures 
+are lower quality, don't be mad because that helps Annie to detect
+complex or lower quality pictures of your object in the future. Let's say that you took 100 
+photos of the apple, you may now change the object. Our second object is the ML
+Learning Book. Position it inside the webcam frame and hold the "Take Picture." button from the second class. For accuracy reasons, please make sure that you take
+roughly the same amount of pictures for every item. In our case, we should have around
+One hundred photos of each object. 
+
+Now let's test the AI. Take the item of your choice, and Annie now tells you how sure 
+she is about what item she believes you are showing. By adding more evenly distributed pictures, 
+the accuracy becomes better.
+## Deployment
+
+To deploy this project run
+
+Clone Project:
 ```bash
-npm run dev
-# or
-yarn dev
+  git clone https://github.com/justTil/xu-web-ai-project-22.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Download Dependencies
+```bash
+  npm i
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Start
+```bash
+  npm run dev
+```
+## Tech Stack
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+**Client:** React, Next.js, MUI
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+**Server:** Next.js, Vercel, Firebase
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Authors
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [@Jesse Klotz](https://github.com/KlotzJesse)
+- [@Maximilian Bala](https://github.com/Himyu)
+- [@Til Schwarze](https://github.com/justTil)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
