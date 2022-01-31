@@ -32,28 +32,16 @@ export default function Home() {
           textAlign="center"
           style={{ marginBottom: "20px" }}
         >
-          Annie Learn&apos;s Pictures
+          Image Recognition
         </Typography>
         <Typography variant="body1" textAlign="center">
-          For now, Annie did not learn anything, but you can change that by
-          starting your first own playground project.
-          <br />
-          <br />
-          Image recognition is a technology many smartphones and devices can
-          perform without any problem. E.g. Google has Google Lenses, a way for
-          you, the user, to photograph a bird, and let Google do the
-          calculations. Returning you the result of what kind of species the
-          bird is.
-          <br />
-          <br />
-          So what kind of image recognition project can you do? Well that is
-          basically up to you, but here are some great ideas we came up with.{" "}
-          <br />
-          <br />
-          Get a friend and train the AI model for both of you, challenge Annie
-          to detect who is standing in front of the camera. Teach Annie about
-          new objects. What is a lamp? A Keyboard? A good coding documentation?
-          Challenge yourself and Annie by trying to find multiple objects.
+          When you first meet Annie, she doesn't know many objects and pictures
+          yet. However, she learns very quickly, and you can show her different
+          things from your room and teach her what it is. Annie can compare
+          several diverse pictures and then tell you what she thinks you are
+          showing her. If you want, you can save Annie's progress, and in the
+          future, import the progress you two made so that you can continue
+          learning together.
         </Typography>
       </Container>
       <Footer />
