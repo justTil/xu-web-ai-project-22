@@ -106,6 +106,10 @@ const Playground = (props) => {
       classCount.current = classArray.length;
   }, [classArray]);
 
+  useEffect(() => {
+    updateXarrow();
+  });
+
   async function save() {
     await mobilenet.current.model.save("downloads://xu-your-model");
   }
@@ -204,7 +208,15 @@ const Playground = (props) => {
             <Card sx={{ mb: 1 }}>
               <CardHeader title="Webcam" />
               <CardContent>
-                {activated && <video ref={vid} autoPlay playsInline muted />}
+                {activated && (
+                  <video
+                    ref={vid}
+                    style={{ borderRadius: "25px", border: "1" }}
+                    autoPlay
+                    playsInline
+                    muted
+                  />
+                )}
                 {!activated && (
                   <Button
                     variant="dashed"
