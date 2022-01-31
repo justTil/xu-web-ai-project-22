@@ -108,7 +108,7 @@ const Playground = (props) => {
 
   useEffect(() => {
     updateXarrow();
-  });
+  }, [classArray]);
 
   async function save() {
     await mobilenet.current.model.save("downloads://xu-your-model");
@@ -284,8 +284,6 @@ const Playground = (props) => {
                     <div key={res.id}>
                       {
                         classArray.filter((aiClass) => {
-                          console.log(aiClass.id);
-                          console.log(res.id);
                           return aiClass.id == res.id;
                         })[0].name
                       }{" "}

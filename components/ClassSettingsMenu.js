@@ -13,7 +13,6 @@ export default function ClassSettingMenu({ setClassArray, aiClass }) {
   };
   const handleClose = () => {
     setClassArray((classArray) => {
-      console.log(classArray);
       return classArray.filter((aiClassF) => {
         return aiClassF.id != aiClass.id;
       });
