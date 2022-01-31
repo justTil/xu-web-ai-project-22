@@ -2,45 +2,37 @@ import { Container, Typography } from "@mui/material";
 import Footer from "../src/components/footer";
 import Header from "../src/components/header";
 import Middle from "../src/components/middle";
+import MediaCard from "../src/components/MediaCard";
 
 export default function Home() {
   return (
     <div>
       <Header />
       <Container style={{ padding: "50px 150px" }}>
-        <Typography variant="h2" textAlign="center">
+        <Typography
+          variant="h2"
+          textAlign="center"
+          style={{ marginBottom: "20px" }}
+        >
           Annie&apos;s Playground
         </Typography>
         <Typography variant="body1" textAlign="center">
-          Suppose you were to survey today and ask developers and tech
-          enthusiasts which leading technologies they are currently pursuing. In
-          that case, you can very safely assume that you would quickly hear
-          Artificial Intelligence or AI. <br />
-          <br />
-          AI has been a significant and widespread technology for many years
-          now, and it will still be a hot topic in 2022. Many large and
-          successful tech companies such as Google, NVIDIA, and Tesla use AI
-          technology and incorporate it into their products. However, it quickly
-          becomes apparent that working with AI can be very complex, requiring
-          mathematics, computing power, and large amounts of data, so getting
-          started looks comparatively tricky.
-          <br />
-          <br />
-          So how can newcomers and interested people get an insight into
-          artificial intelligence without building their supercomputer? <br />
-          <br />
-          With &quot;Annie&apos;s Playground&quot; we offer a playground where
-          all interest groups can work with artificial intelligence and get a
-          first impression of the technology with just a few clicks. You can
-          create a small AI project like image recognition and see if the AI can
-          differentiate between you and your friends, and the beauty of it is
-          that it works directly in the browser. You don&apos;t need any other
-          software or hardware, making your first AI project easy to set up.
+          Who is Annie? Annie is your new AI friend, and she is super motivated
+          to learn new things. Together with Annie, you can explore our
+          playground and create small AI projects in your browser without the
+          additional need for software and hardware. Annie is enthusiastic about
+          learning new things, so jump right in and start teaching her all about
+          the world around her.
         </Typography>
       </Container>
       <Middle />
+
       <Container style={{ padding: "50px 150px" }}>
-        <Typography variant="h2" textAlign="center">
+        <Typography
+          variant="h2"
+          textAlign="center"
+          style={{ marginBottom: "20px" }}
+        >
           Annie Learn&apos;s Pictures
         </Typography>
         <Typography variant="body1" textAlign="center">
