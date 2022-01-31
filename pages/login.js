@@ -9,9 +9,9 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import Alert from "@mui/material/Alert";
+import { withPublic } from "../src/hook/route";
+import { Card } from "@mui/material";
 
 function Copyright(props) {
   return (
@@ -31,9 +31,7 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
-
-export default function SignIn({ auth }) {
+function SignIn({ auth }) {
   const { user, loginWithGoogle, error } = auth;
 
   const handleSubmit = (event) => {
@@ -47,22 +45,32 @@ export default function SignIn({ auth }) {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
+      <Container style={{
+        width: "100%",
+        height: "88vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
+        alignItems: "center"
+      }}>
+        <Card
           sx={{
             marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            justifyContent: "center",
+            width: "50%",
+            height: "50%"
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            We use Google for Authentication
+          <Typography component="h1" variant="h5" style={{
+            marginBottom: "15px"
+          }}>
+            Login with Google
           </Typography>
           <Box>
             {error && (
@@ -76,13 +84,14 @@ export default function SignIn({ auth }) {
               onClick={loginWithGoogle}
               color="secondary"
             >
-              Google
+              Login
             </Button>
             <h1>{user?.uid}</h1>
           </Box>
-        </Box>
+        </Card>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
   );
 }
+
+export default withPublic(SignIn)

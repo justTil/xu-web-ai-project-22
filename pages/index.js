@@ -58,7 +58,6 @@ export default function Home() {
         </Typography>
       </Container>
       <Footer />
-      <Container />
     </div>
   );
 }
